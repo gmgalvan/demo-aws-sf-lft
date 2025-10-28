@@ -10,7 +10,7 @@ module "vpc" {
   availability_zones = local.vpc_availability_zones
 
   enable_nat_gateway         = true
-  enable_s3_gateway_endpoint = false
+  enable_s3_gateway_endpoint = true
 
   # Flow Logs (enabled=true, 3 days, 600s)
   enable_flow_logs               = true
