@@ -83,13 +83,13 @@ resource "aws_codepipeline" "demo_infra_prod_pipeline" {
       owner     = "AWS"
       provider  = "Manual"
       version   = "1"
-      run_order = "1"
+      run_order = "2"
 
       configuration = {
         CustomData = "Please review and approve the deployment to proceed"
       }
     }
-    
+
     action {
       category        = "Build"
       input_artifacts = ["SourceArtifact", "${local.demo_vpc_component_name}_plan"]

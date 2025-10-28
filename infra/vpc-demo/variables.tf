@@ -46,13 +46,3 @@ variable "vpc_private_subnet_count" {
   description = "Number of private subnets to create"
   type        = string
 }
-
-variable "enable_nat_gateway" {
-  description = "Whether to enable NAT Gateway for private subnets"
-  type        = string
-}
-
-variable "enable_s3_gateway_endpoint" {
-  description = "Whether to enable S3 Gateway Endpoint for private subnets"
-  type        = string
-}
