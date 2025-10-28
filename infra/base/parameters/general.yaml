@@ -1,0 +1,35 @@
+project_details:
+  dev_env:
+    value: "dev"
+    type: "String"
+    tier: "Advanced"
+  project_name:
+    value: "demo"
+    type: "String"
+    tier: "Advanced"
+  tenant:
+    value: "softserve"
+    type: "String"
+    tier: "Advanced"
+  aws_region:
+    value: "us-east-1"
+    type: "String"
+    tier: "Advanced"
+  solution:
+    value: "demo"
+    type: "String"
+    tier: "Advanced"
+  repository_name:
+    value: "gmgalvan/demo-aws-sf-lft"
+    type: "String"
+    tier: "Advanced"
+
+codepipeline:
+  codestar_connection_arn:
+    value: "arn:aws:codeconnections:us-east-1:023890853822:connection/3bac617b-fd15-43ce-bb4c-4fa4ee39becd"
+    type: "String"
+    tier: "Advanced"
+  demo_vpc_component_name:
+    value: "demo_vpc"
+    type: "String"
+    tier: "Advanced"

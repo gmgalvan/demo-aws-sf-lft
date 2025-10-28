@@ -1,0 +1,40 @@
+version: 0.2
+
+env:
+  variables:
+    TF_VAR_bucket_backend: "demo-infra-tf-state-backend"
+    TF_VAR_key: "dev/infra/demo-vpc/terraform.tfstate"
+    TF_VAR_env: "dev"
+  parameter-store:
+    TF_VAR_aws_region: "/demo/softserve/general/project_details/aws_region"
+    TF_VAR_solution: "/demo/softserve/general/project_details/solution"
+    TF_VAR_tenant: "/demo/softserve/general/project_details/tenant"
+    TF_VAR_project_name: "/demo/softserve/general/project_details/project_name"
+    TF_VAR_environment: "/demo/softserve/general/project_details/dev_env"
+    TF_VAR_aws_vpc_cidr: "/demo/softserve/dev/vpc/cidr"
+    TF_VAR_vpc_public_subnet_count: "/demo/softserve/dev/vpc/public_subnet_count"
+    TF_VAR_vpc_private_subnet_count: "/demo/softserve/dev/vpc/private_subnet_count"
+    TF_VAR_enable_nat_gateway: "/demo/softserve/dev/vpc/enable_nat_gateway"
+    TF_VAR_enable_s3_gateway_endpoint: "/demo/softserve/dev/vpc/enable_s3_gateway_endpoint"
+    
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/1.13.2/terraform_1.13.2_linux_amd64.zip"
+      - "unzip -o terraform.zip"
+      - "mv terraform /bin"
+      - "rm terraform.zip"
+      - "terraform --version"
+  build:
+    commands:
+      - "echo Starting Terraform Apply for demo VPC"
+      - cd infra/vpc-demo
+      - |
+        terraform init \
+          -backend-config="bucket=$TF_VAR_bucket_backend" \
+          -backend-config="key=$TF_VAR_key" \
+          -backend-config="region=${TF_VAR_aws_region}"
+      - terraform apply -auto-approve "$CODEBUILD_SRC_DIR_demo_vpc_plan/plan.out"

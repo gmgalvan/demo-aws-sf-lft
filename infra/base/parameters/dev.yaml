@@ -1,0 +1,24 @@
+codepipeline:
+  deploy_infra_pipeline_branch_name:
+    value: "main"
+    type: "String"
+    tier: "Standard"
+
+vpc:
+  cidr:
+    value: "10.80.0.0/16"
+    type: "String"
+    tier: "Standard"
+  public_subnet_count:
+    value: "2"
+    type: "String"
+    tier: "Standard"
+  private_subnet_count:
+    value: "2"
+    type: "String"
+    tier: "Standard"
+s3:
+  pipeline_demo_artifacts_bucket_name:
+    value: "demo-softserve-dev-infra-pipeline-artifacts"
+    type: "String"
+    tier: "Standard"
