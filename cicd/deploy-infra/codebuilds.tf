@@ -1,5 +1,5 @@
 module "codebuild_demo_vpc" {
-  source         = "../../modules/codebuild-terraform-workflow"
+  source         = "../modules/codebuild-terraform-workflow"
   component_name = replace("${local.demo_prefix}-${local.demo_vpc_component_name}-infra-deploy", "_", "-")
   codebuild_role = aws_iam_role.demo_vpc_codebuild_role.arn
 

@@ -14,8 +14,6 @@ env:
     TF_VAR_aws_vpc_cidr: "/demo/softserve/dev/vpc/cidr"
     TF_VAR_vpc_public_subnet_count: "/demo/softserve/dev/vpc/public_subnet_count"
     TF_VAR_vpc_private_subnet_count: "/demo/softserve/dev/vpc/private_subnet_count"
-    TF_VAR_enable_nat_gateway: "/demo/softserve/dev/vpc/enable_nat_gateway"
-    TF_VAR_enable_s3_gateway_endpoint: "/demo/softserve/dev/vpc/enable_s3_gateway_endpoint"
     
 
 phases:
