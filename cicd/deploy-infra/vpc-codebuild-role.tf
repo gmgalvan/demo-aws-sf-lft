@@ -228,7 +228,8 @@ data "aws_iam_policy_document" "demo_vpc_codebuild_inline_policy" {
       "ec2:CreateNetworkInterface",
       "ec2:DeleteNetworkInterface",
       "ec2:AttachNetworkInterface",
-      "ec2:DetachNetworkInterface"
+      "ec2:DetachNetworkInterface",
+      "ec2:Delete*"
     ]
     resources = ["*"]
   }

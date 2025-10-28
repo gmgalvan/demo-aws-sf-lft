@@ -35,5 +35,5 @@ locals {
   # ==========================================
   # Component Names
   # ==========================================e
-  demo_vpc_component_name                  = data.aws_ssm_parameter.demo_vpc_component_name.value
+  demo_vpc_component_name = data.aws_ssm_parameter.demo_vpc_component_name.value
 }
