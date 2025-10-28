@@ -6,8 +6,6 @@ locals {
   vpc_public_subnet_count    = tonumber(var.vpc_public_subnet_count)
   vpc_private_subnet_count   = tonumber(var.vpc_private_subnet_count)
   vpc_availability_zones     = slice(data.aws_availability_zones.available.names, 0, 3)
-  enable_nat_gateway         = tobool(var.enable_nat_gateway)
-  enable_s3_gateway_endpoint = tobool(var.enable_s3_gateway_endpoint)
 
   solution    = var.solution
   tenant      = var.tenant
