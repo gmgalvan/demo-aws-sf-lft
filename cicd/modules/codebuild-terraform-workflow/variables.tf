@@ -53,3 +53,9 @@ variable "encryption_key" {
   default     = null
 
 }
+
+variable "tf_destroy_build_spec" {
+  type        = string
+  description = "Path to the buildspec file for the destroy stage"
+  default     = null # Make it optional
+}

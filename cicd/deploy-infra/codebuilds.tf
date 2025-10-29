@@ -1,3 +1,5 @@
+
+
 module "codebuild_demo_vpc" {
   source         = "../modules/codebuild-terraform-workflow"
   component_name = replace("${local.demo_prefix}-${local.demo_vpc_component_name}-infra-deploy", "_", "-")
@@ -5,8 +7,9 @@ module "codebuild_demo_vpc" {
 
   project_name = local.project_name
 
-  tf_plan_build_spec  = "infra/vpc-demo/buildspecs/dev/buildspec_plan.yml"
-  tf_apply_build_spec = "infra/vpc-demo/buildspecs/dev/buildspec_apply.yml"
+  tf_plan_build_spec    = "infra/vpc-demo/buildspecs/dev/buildspec_plan.yml"
+  tf_apply_build_spec   = "infra/vpc-demo/buildspecs/dev/buildspec_apply.yml"
+  tf_destroy_build_spec = "infra/vpc-demo/buildspecs/dev/buildspec_destroy.yml"
 
   aws_region = local.aws_region
 

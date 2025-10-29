@@ -60,6 +60,7 @@ resource "aws_codepipeline" "demo_infra_prod_pipeline" {
   # VPC Stage
   stage {
     name = "VPC_demo"
+
     action {
       category         = "Build"
       input_artifacts  = ["SourceArtifact"]
@@ -75,7 +76,6 @@ resource "aws_codepipeline" "demo_infra_prod_pipeline" {
         ProjectName = module.codebuild_demo_vpc.codebuild_tf_plan_project_name
       }
     }
-
 
     action {
       name      = "Manual-Approval"
@@ -103,6 +103,39 @@ resource "aws_codepipeline" "demo_infra_prod_pipeline" {
       configuration = {
         PrimarySource = "SourceArtifact"
         ProjectName   = module.codebuild_demo_vpc.codebuild_tf_apply_project_name
+      }
+    }
+  }
+
+  # Optional Destroy Stage - ONLY runs if manually approved
+  stage {
+    name = "DESTROY_Infrastructure"
+
+    action {
+      name      = "Destroy-Warning-Approval"
+      category  = "Approval"
+      owner     = "AWS"
+      provider  = "Manual"
+      version   = "1"
+      run_order = "1"
+
+      configuration = {
+        CustomData = "⚠️ WARNING: This will DESTROY all VPC infrastructure. This action is IRREVERSIBLE. Only approve if you are absolutely certain!"
+      }
+    }
+
+    action {
+      category        = "Build"
+      input_artifacts = ["SourceArtifact"]
+      name            = "terraform-destroy"
+      owner           = "AWS"
+      provider        = "CodeBuild"
+      region          = local.aws_region
+      version         = "1"
+      run_order       = "2"
+
+      configuration = {
+        ProjectName = module.codebuild_demo_vpc.codebuild_tf_destroy_project_name
       }
     }
   }
